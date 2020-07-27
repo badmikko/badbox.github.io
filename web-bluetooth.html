@@ -341,14 +341,17 @@
     
     if(characteristics.length > 0) {
       let characteristic = characteristics[0];
-      log('Value: ' + await characteristic.readValue());
+      
+      let readValue = await characteristic.readValue();
+      let decoder = new TextDecoder('utf-8');
+      log('> Characteristic: ' + decoder.decode(readValue));
 
-      let value = new Date().toString();
-      //let decoder = new TextDecoder('utf-8');
-      //log('> Characteristic User Description: ' + decoder.decode(value));
+      let writeValue = new Date().toString();
       let encoder = new TextEncoder('utf-8');
       log('Setting Characteristic User Description...');
-      await characteristic.writeValue(encoder.encode(value));
+      await characteristic.writeValue(encoder.encode(writeValue));
+      
+      log('Done...');
     }
     
   } catch(error) {
