@@ -297,17 +297,23 @@
     filters.push({namePrefix: filterNamePrefix});
   }
 
-  let characteristicUuid = document.querySelector('#characteristic').value;
-  if (characteristicUuid.startsWith('0x')) {
-    characteristicUuid = parseInt(characteristicUuid);
-  }
-
   let options = {};
   if (document.querySelector('#allDevices').checked) {
     options.acceptAllDevices = true;
   } else {
     options.filters = filters;
   }
+          
+  let serviceUuid = document.querySelector('#service').value;
+  if (serviceUuid.startsWith('0x')) {
+    serviceUuid = parseInt(serviceUuid);
+  }
+
+  let characteristicUuid = document.querySelector('#characteristic').value;
+  if (characteristicUuid.startsWith('0x')) {
+    characteristicUuid = parseInt(characteristicUuid);
+  }
+          
 
   try {
     log('Requesting Bluetooth Device...');
