@@ -337,14 +337,17 @@
     log('> Characteristics: ' +
       characteristics.map(c => c.uuid).join('\n' + ' '.repeat(19)));
     
-    log('Value: ' + characteristic.readValue());
-    
-    let value = new Date().toString();
-    //let decoder = new TextDecoder('utf-8');
-    //log('> Characteristic User Description: ' + decoder.decode(value));
-    let encoder = new TextEncoder('utf-8');
-    log('Setting Characteristic User Description...');
-    characteristic.writeValue(encoder.encode(value))
+    if(characteristics.length > 0) {
+      let characteristic = characteristics[0];
+      log('Value: ' + await characteristic.readValue());
+
+      let value = new Date().toString();
+      //let decoder = new TextDecoder('utf-8');
+      //log('> Characteristic User Description: ' + decoder.decode(value));
+      let encoder = new TextEncoder('utf-8');
+      log('Setting Characteristic User Description...');
+      await characteristic.writeValue(encoder.encode(value));
+    }
     
   } catch(error) {
     log('Argh! ' + error);
