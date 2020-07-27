@@ -323,7 +323,7 @@
     log('Connecting to GATT Server...');
     const server = await device.gatt.connect();
     
-    log('Connecting Server connected = ' + bluetoothDevice.gatt.connected);
+    log('Connecting Server connected = ' + device.gatt.connected);
 
     log('Getting Service...');
     const service = await server.getPrimaryService(serviceUuid);
